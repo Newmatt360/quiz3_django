@@ -2,8 +2,8 @@ from django.shortcuts import render
 from .models import Student
 
 def home(request):
-    
-    if not Student.objects.exists():
+    if not Student.objects.filter(first_name="Alonzo").exists():
+        Student.objects.all().delete()
         Student.objects.create(first_name="Alonzo", last_name="Sean", age=20, email="alonzosean@email.com", course="BSIT")
         Student.objects.create(first_name="Christian Abuel", last_name="Perlada", age=20, email="christian.perlada@email.com", course="BSIT")
         Student.objects.create(first_name="Christian Lenard", last_name="Melecia", age=20, email="christian.melecia@email.com", course="BSIT")
