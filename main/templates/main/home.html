@@ -3,114 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Directory | Quiz #3</title>
+    <title>Barbie Student Directory | Quiz #3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffdde1 100%);
+            min-height: 100vh;
             padding: 40px 20px;
+            color: #5a1846;
         }
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.92);
+            padding: 35px;
+            border-radius: 28px;
+            border: 4px solid #ff69b4;
+            box-shadow: 0 12px 35px rgba(224, 33, 138, 0.28);
         }
         header {
             text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #eef2f5;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed #ffb6c1;
         }
         header h1 {
-            color: #2c3e50;
-            font-size: 28px;
+            font-family: 'Pacifico', cursive;
+            color: #e0218a;
+            font-size: 46px;
+            font-weight: normal;
+            text-shadow: 2px 3px 0px #ffc0cb, 0 5px 15px rgba(224, 33, 138, 0.25);
+            letter-spacing: 1px;
             margin-bottom: 6px;
         }
         header p {
-            color: #6c757d;
+            color: #d63384;
             font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(224, 33, 138, 0.12);
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
         }
         th, td {
-            padding: 14px 16px;
+            padding: 16px 18px;
             text-align: left;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid #ffe4e1;
         }
         th {
-            background-color: #3b5998;
+            background: linear-gradient(90deg, #e0218a, #ff1493, #ff69b4);
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             font-size: 13px;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
-        tr:hover {
-            background-color: #f8f9fa;
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #fff5f9;
+        }
+        tbody tr:hover {
+            background-color: #ffe0f0;
+            transform: scale(1.005);
+        }
+        .id-pill {
+            color: #e0218a;
+            font-weight: 700;
+        }
+        .student-name {
+            color: #b51763;
+            font-weight: 600;
         }
         .badge {
-            background-color: #e7f1ff;
-            color: #0d6efd;
-            padding: 4px 10px;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: #ffffff;
+            padding: 5px 14px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            box-shadow: 0 2px 8px rgba(255, 20, 147, 0.35);
+            display: inline-block;
+        }
+        .email-link {
+            color: #c71585;
+            text-decoration: none;
+            font-size: 14px;
         }
         .empty-message {
             text-align: center;
-            padding: 30px;
-            color: #888;
+            padding: 35px;
+            color: #e0218a;
             font-style: italic;
+            font-weight: 500;
+        }
+        footer {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #d63384;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PELEC304 Student Directory</h1>
-            <p>Model &rarr; View &rarr; URL &rarr; Template Connection</p>
+            <h1>✨ Barbie Land Directory ✨</h1>
+            <p>PELEC304 • Model &rarr; View &rarr; URL &rarr; Template</p>
         </header>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Course</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Enrolled Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>#{{ student.id }}</td>
-                    <td><strong>{{ student.first_name }} {{ student.last_name }}</strong></td>
-                    <td><span class="badge">{{ student.course }}</span></td>
-                    <td>{{ student.age }}</td>
-                    <td>{{ student.email }}</td>
-                    <td>{{ student.enrolled_date }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6" class="empty-message">No student records found. Please add students via the Django Admin panel.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Course</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Enrolled Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td><span class="id-pill">💖 #{{ student.id }}</span></td>
+                        <td class="student-name">{{ student.first_name }} {{ student.last_name }}</td>
+                        <td><span class="badge">{{ student.course|default:"BSIT" }}</span></td>
+                        <td>{{ student.age }}</td>
+                        <td><span class="email-link">{{ student.email }}</span></td>
+                        <td>{{ student.enrolled_date }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-message">✨ No students in the Dreamhouse yet! Add records in the Admin or Shell. ✨</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            🎀 Powered by Django &amp; Mama MOOOO!! 🎀
+        </footer>
     </div>
 </body>
 </html>
