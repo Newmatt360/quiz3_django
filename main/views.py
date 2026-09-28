@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Student
 
 def home(request):
-    # Automatically adds your 7 classmates if the database is empty
+    
     if not Student.objects.exists():
         Student.objects.create(first_name="Alonzo", last_name="Sean", age=20, email="alonzosean@email.com", course="BSIT")
         Student.objects.create(first_name="Christian Abuel", last_name="Perlada", age=20, email="christian.perlada@email.com", course="BSIT")
